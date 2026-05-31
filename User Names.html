@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureQR • Green Vault</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #0a2f1a, #052e16);
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+        }
+        .qr-container {
+            background: #052e16;
+            border: 3px solid #4ade80;
+        }
+    </style>
+</head>
+<body class="min-h-screen text-white font-mono">
+    <div class="max-w-2xl mx-auto p-6">
+        <!-- Header -->
+        <div class="flex items-center gap-3 mb-10 mt-8">
+            <div class="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center text-2xl">🔒</div>
+            <div>
+                <h1 class="text-4xl font-bold tracking-tighter text-emerald-400">SecureQR</h1>
+                <p class="text-emerald-300 text-sm">Green Vault Edition</p>
+            </div>
+        </div>
+
+        <div class="glass rounded-3xl p-8 border border-emerald-500/30 shadow-2xl">
+            <div class="mb-8">
+                <h2 class="text-2xl font-semibold mb-2 text-emerald-100">Generate Secure QR Codes</h2>
+                <p class="text-emerald-400">Enter your credentials • Separate QR codes will be created</p>
+            </div>
+
+            <!-- Input Form -->
+            <div class="space-y-6">
+                <div>
+                    <label class="block text-emerald-300 text-sm mb-2 font-medium">USERNAME</label>
+                    <input 
+                        id="username"
+                        type="text" 
+                        placeholder="Enter your username"
+                        class="w-full bg-emerald-950/70 border border-emerald-600 focus:border-emerald-400 rounded-2xl px-6 py-4 text-lg outline-none transition-all text-white placeholder:text-emerald-700">
+                </div>
+
+                <div>
+                    <label class="block text-emerald-300 text-sm mb-2 font-medium">PASSWORD</label>
+                    <input 
+                        id="password"
+                        type="password" 
+                        placeholder="Enter your password"
+                        class="w-full bg-emerald-950/70 border border-emerald-600 focus:border-emerald-400 rounded-2xl px-6 py-4 text-lg outline-none transition-all text-white placeholder:text-emerald-700">
+                </div>
+
+                <button 
+                    onclick="generateQRCodes()"
+                    class="w-full bg-emerald-500 hover:bg-emerald-400 active:bg-emerald-600 transition-all text-black font-bold text-xl py-5 rounded-2xl flex items-center justify-center gap-3 shadow-lg shadow-emerald-500/50">
+                    <span>GENERATE QR CODES</span>
+                    <span class="text-2xl">→</span>
+                </button>
+            </div>
+
+            <!-- QR Codes Display -->
+            <div id="qr-section" class="hidden mt-12">
+                <div class="grid grid-cols-2 gap-8">
+                    <!-- Username QR -->
+                    <div class="text-center">
+                        <div class="text-emerald-400 text-sm mb-3 tracking-widest">USERNAME QR</div>
+                        <div id="username-qr" class="qr-container mx-auto p-4 rounded-3xl inline-block"></div>
+                        <p id="username-text" class="mt-4 text-xs text-emerald-500 break-all px-4 font-medium"></p>
+                    </div>
+
+                    <!-- Password QR -->
+                    <div class="text-center">
+                        <div class="text-emerald-400 text-sm mb-3 tracking-widest">PASSWORD QR</div>
+                        <div id="password-qr" class="qr-container mx-auto p-4 rounded-3xl inline-block"></div>
+                        <p id="password-text" class="mt-4 text-xs text-emerald-500 break-all px-4 font-medium"></p>
+                    </div>
+                </div>
+
+                <div class="text-center mt-10">
+                    <button 
+                        onclick="downloadBoth()"
+                        class="bg-emerald-600 hover:bg-emerald-700 px-8 py-3 rounded-2xl text-sm font-medium transition-all">
+                        Download Both QR Codes
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center text-emerald-600 text-xs mt-8">
+            For demonstration only • Do not use real sensitive credentials
+        </div>
+    </div>
+
+    <script>
+        let usernameQR = null;
+        let passwordQR = null;
+
+        function generateQRCodes() {
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            if (!username || !password) {
+                alert("Please enter both username and password");
+                return;
+            }
+
+            // Show QR section
+            document.getElementById('qr-section').classList.remove('hidden');
+
+            // Clear previous QRs
+            const usernameContainer = document.getElementById('username-qr');
+            const passwordContainer = document.getElementById('password-qr');
+            
+            usernameContainer.innerHTML = '';
+            passwordContainer.innerHTML = '';
+
+            // Generate Username QR
+            usernameQR = new QRCode(usernameContainer, {
+                text: username,
+                width: 220,
+                height: 220,
+                colorDark: "#10b981",
+                colorLight: "#052e16",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+
+            // Generate Password QR
+            passwordQR = new QRCode(passwordContainer, {
+                text: password,
+                width: 220,
+                height: 220,
+                colorDark: "#10b981",
+                colorLight: "#052e16",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+
+            // Display text
+            document.getElementById('username-text').textContent = username;
+            document.getElementById('password-text').textContent = "••••••••";
+        }
+
+        function downloadBoth() {
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            if (!usernameQR || !passwordQR) return;
+
+            // Download Username QR
+            const usernameCanvas = document.getElementById('username-qr').querySelector('canvas');
+            const usernameLink = document.createElement('a');
+            usernameLink.download = `username_${username}.png`;
+            usernameLink.href = usernameCanvas.toDataURL('image/png');
+            usernameLink.click();
+
+            // Download Password QR (delayed)
+            setTimeout(() => {
+                const passwordCanvas = document.getElementById('password-qr').querySelector('canvas');
+                const passwordLink = document.createElement('a');
+                passwordLink.download = `password_${username}.png`;
+                passwordLink.href = passwordCanvas.toDataURL('image/png');
+                passwordLink.click();
+            }, 300);
+        }
+
+        // Allow Enter key to submit
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                generateQRCodes();
+            }
+        });
+    </script>
+</body>
+</html>
