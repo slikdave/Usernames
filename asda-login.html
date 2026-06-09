@@ -2,9 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
   <title>ASDA Login</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%234a7c59'/><path d='M20 58 Q20 42 35 42 Q42 42 46 48 L54 48 Q58 42 65 42 Q80 42 80 58 Q80 68 72 70 L28 70 Q20 68 20 58Z' fill='white'/><rect x='44' y='48' width='12' height='8' fill='%234a7c59'/><circle cx='65' cy='54' r='5' fill='%234a7c59'/><circle cx='65' cy='54' r='2.5' fill='white'/><text x='50' y='88' text-anchor='middle' font-family='Arial' font-weight='bold' font-size='14' fill='white'>ASDA</text></svg>"/>
+
+  <!-- PWA: full-screen when added to home screen -->
+  <meta name="mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+  <meta name="apple-mobile-web-app-title" content="ASDA Login"/>
+  <meta name="application-name" content="ASDA Login"/>
+  <meta name="theme-color" content="#4a7c59"/>
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%234a7c59'/><circle cx='38' cy='46' r='13' fill='white'/><circle cx='38' cy='46' r='7' fill='%234a7c59'/><rect x='49' y='43' width='28' height='7' rx='3' fill='white'/><rect x='68' y='50' width='7' height='7' rx='2' fill='white'/><rect x='58' y='50' width='7' height='7' rx='2' fill='white'/><text x='50' y='80' text-anchor='middle' font-family='Arial Black,Arial' font-weight='900' font-size='17' fill='white' letter-spacing='1'>ASDA</text></svg>"/>
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%234a7c59'/><circle cx='38' cy='46' r='13' fill='white'/><circle cx='38' cy='46' r='7' fill='%234a7c59'/><rect x='49' y='43' width='28' height='7' rx='3' fill='white'/><rect x='68' y='50' width='7' height='7' rx='2' fill='white'/><rect x='58' y='50' width='7' height='7' rx='2' fill='white'/><text x='50' y='80' text-anchor='middle' font-family='Arial Black,Arial' font-weight='900' font-size='17' fill='white' letter-spacing='1'>ASDA</text></svg>"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800&family=Barlow+Condensed:wght@700;800&display=swap');
@@ -30,8 +40,46 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 0 0 48px;
+      padding: 0 0 env(safe-area-inset-bottom, 48px);
+      padding-bottom: max(48px, env(safe-area-inset-bottom));
       color: var(--text);
+    }
+
+    /* Install banner */
+    .install-banner {
+      width: 100%;
+      background: var(--green-dark);
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .install-banner span { flex: 1; line-height: 1.4; }
+
+    .install-banner button {
+      background: white;
+      color: var(--green-dark);
+      border: none;
+      border-radius: 8px;
+      padding: 7px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      font-family: 'Barlow', sans-serif;
+    }
+
+    .install-banner .dismiss {
+      background: transparent;
+      color: rgba(255,255,255,0.6);
+      padding: 4px 8px;
+      font-size: 18px;
+      line-height: 1;
     }
 
     /* Header */
@@ -373,6 +421,22 @@
 </head>
 <body>
 
+<!-- Add to Home Screen banner (hidden if already installed or dismissed) -->
+<div id="install-banner" style="width:100%; background:var(--green-dark); color:white; font-family:'Barlow',sans-serif;">
+  <div style="display:flex; align-items:center; gap:12px; padding:10px 16px;">
+    <span style="flex:1; font-size:13px; font-weight:600; line-height:1.4;">📲 Add to your home screen for quick access — works like an app!</span>
+    <button onclick="toggleInstallHelp()" id="how-btn" style="background:white; color:var(--green-dark); border:none; border-radius:8px; padding:7px 14px; font-size:12px; font-weight:700; cursor:pointer; font-family:'Barlow',sans-serif; white-space:nowrap;">How?</button>
+    <button onclick="dismissBanner()" style="background:transparent; color:rgba(255,255,255,0.7); border:none; font-size:20px; cursor:pointer; padding:0 4px; line-height:1;">×</button>
+  </div>
+  <div id="install-help" style="display:none; background:#fff; color:var(--text); padding:14px 18px; font-size:13px; line-height:1.8; border-top:1px solid var(--border);">
+    <strong style="font-size:14px; color:var(--green-dark);">📱 iPhone / iPad (Safari):</strong><br>
+    Tap the <strong>Share</strong> button (box with ↑ arrow at the bottom) → scroll down and tap <strong>"Add to Home Screen"</strong> → tap <strong>Add</strong>.<br><br>
+    <strong style="font-size:14px; color:var(--green-dark);">🤖 Android (Chrome):</strong><br>
+    Tap the <strong>⋮ three-dot menu</strong> (top right) → tap <strong>"Add to Home screen"</strong> → tap <strong>Add</strong>.<br><br>
+    <button onclick="toggleInstallHelp()" style="background:var(--green); color:white; border:none; border-radius:8px; padding:9px 20px; font-size:13px; font-weight:700; cursor:pointer; font-family:'Barlow',sans-serif;">Got it ✓</button>
+  </div>
+</div>
+
 <div class="header">
   <div class="logo-icon">
     <svg viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -559,13 +623,40 @@
     link.click();
   }
 
-  // On load: check for saved creds
+  // On load: check for saved creds + hide banner if running as installed PWA
   window.addEventListener('DOMContentLoaded', () => {
     const data = loadCreds();
     if (data && data.username && data.password) {
       showSavedState(data.username, data.password);
     }
+
+    // Hide install banner if already running standalone (installed)
+    if (window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches) {
+      document.getElementById('install-banner').style.display = 'none';
+    }
+
+    // Hide if previously dismissed
+    if (localStorage.getItem('install_banner_dismissed')) {
+      document.getElementById('install-banner').style.display = 'none';
+    }
   });
+
+  function dismissBanner() {
+    document.getElementById('install-banner').style.display = 'none';
+    localStorage.setItem('install_banner_dismissed', '1');
+  }
+
+  function toggleInstallHelp() {
+    const help = document.getElementById('install-help');
+    const btn = document.getElementById('how-btn');
+    if (help.style.display === 'none' || help.style.display === '') {
+      help.style.display = 'block';
+      btn.textContent = 'Close ✕';
+    } else {
+      help.style.display = 'none';
+      btn.textContent = 'How?';
+    }
+  }
 </script>
 </body>
 </html>
