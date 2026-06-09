@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
   <title>ASDA Login</title>
 
-  <!-- PWA: full-screen when added to home screen -->
+  <!-- PWA meta -->
   <meta name="mobile-web-app-capable" content="yes"/>
   <meta name="apple-mobile-web-app-capable" content="yes"/>
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
@@ -13,8 +13,10 @@
   <meta name="application-name" content="ASDA Login"/>
   <meta name="theme-color" content="#4a7c59"/>
 
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%234a7c59'/><circle cx='38' cy='46' r='13' fill='white'/><circle cx='38' cy='46' r='7' fill='%234a7c59'/><rect x='49' y='43' width='28' height='7' rx='3' fill='white'/><rect x='68' y='50' width='7' height='7' rx='2' fill='white'/><rect x='58' y='50' width='7' height='7' rx='2' fill='white'/><text x='50' y='80' text-anchor='middle' font-family='Arial Black,Arial' font-weight='900' font-size='17' fill='white' letter-spacing='1'>ASDA</text></svg>"/>
-  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%234a7c59'/><circle cx='38' cy='46' r='13' fill='white'/><circle cx='38' cy='46' r='7' fill='%234a7c59'/><rect x='49' y='43' width='28' height='7' rx='3' fill='white'/><rect x='68' y='50' width='7' height='7' rx='2' fill='white'/><rect x='58' y='50' width='7' height='7' rx='2' fill='white'/><text x='50' y='80' text-anchor='middle' font-family='Arial Black,Arial' font-weight='900' font-size='17' fill='white' letter-spacing='1'>ASDA</text></svg>"/>
+  <!-- Real PNG icon for home screen (iOS requires this — SVG data URIs don't work) -->
+  <link rel="apple-touch-icon" href="data:image/png;base64,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"/>
+  <link rel="icon" type="image/png" href="data:image/png;base64,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"/>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800&family=Barlow+Condensed:wght@700;800&display=swap');
@@ -40,28 +42,33 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 0 0 env(safe-area-inset-bottom, 48px);
-      padding-bottom: max(48px, env(safe-area-inset-bottom));
+      padding-bottom: 48px;
       color: var(--text);
     }
 
     /* Install banner */
-    .install-banner {
+    #install-banner {
       width: 100%;
       background: var(--green-dark);
       color: white;
-      padding: 10px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      font-size: 13px;
-      font-weight: 600;
+      font-family: 'Barlow', sans-serif;
     }
 
-    .install-banner span { flex: 1; line-height: 1.4; }
+    #install-banner-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 16px;
+    }
 
-    .install-banner button {
+    #install-banner-row span {
+      flex: 1;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .banner-btn {
       background: white;
       color: var(--green-dark);
       border: none;
@@ -74,12 +81,41 @@
       font-family: 'Barlow', sans-serif;
     }
 
-    .install-banner .dismiss {
+    .banner-dismiss {
       background: transparent;
-      color: rgba(255,255,255,0.6);
-      padding: 4px 8px;
-      font-size: 18px;
+      color: rgba(255,255,255,0.7);
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      padding: 0 2px;
       line-height: 1;
+      font-family: sans-serif;
+    }
+
+    #install-help-panel {
+      background: white;
+      color: var(--text);
+      padding: 16px 18px;
+      font-size: 13px;
+      line-height: 1.85;
+      border-top: 1px solid var(--border);
+      border-bottom: 2px solid var(--green);
+    }
+
+    #install-help-panel strong { color: var(--green-dark); }
+
+    .help-close-btn {
+      margin-top: 12px;
+      display: inline-block;
+      background: var(--green);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 9px 20px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: 'Barlow', sans-serif;
     }
 
     /* Header */
@@ -105,20 +141,10 @@
       justify-content: center;
       gap: 2px;
       flex-shrink: 0;
+      overflow: hidden;
     }
 
-    .logo-icon svg {
-      width: 30px;
-      height: 30px;
-    }
-
-    .logo-label {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 10px;
-      font-weight: 800;
-      color: white;
-      letter-spacing: 1.5px;
-    }
+    .logo-icon img { width: 52px; height: 52px; border-radius: 14px; }
 
     .header-text h1 {
       font-family: 'Barlow Condensed', sans-serif;
@@ -151,7 +177,6 @@
       background: #7eff9a;
       border-radius: 50%;
       animation: pulse 2s infinite;
-      box-shadow: 0 0 0 0 rgba(126,255,154,0.4);
     }
 
     @keyframes pulse {
@@ -204,7 +229,6 @@
       flex-shrink: 0;
     }
 
-    /* Form */
     label {
       display: block;
       font-size: 12px;
@@ -215,8 +239,7 @@
       margin-bottom: 6px;
     }
 
-    input[type="text"],
-    input[type="password"] {
+    input[type="text"], input[type="password"] {
       width: 100%;
       border: 1.5px solid var(--border);
       border-radius: 10px;
@@ -236,14 +259,8 @@
       background: white;
     }
 
-    .show-toggle {
-      position: relative;
-    }
-
-    .show-toggle input {
-      padding-right: 48px;
-      margin-bottom: 0;
-    }
+    .show-toggle { position: relative; }
+    .show-toggle input { padding-right: 54px; margin-bottom: 0; }
 
     .toggle-btn {
       position: absolute;
@@ -294,7 +311,6 @@
 
     .btn-secondary:hover { background: var(--border); }
 
-    /* Saved state */
     .saved-info {
       display: flex;
       align-items: center;
@@ -305,26 +321,11 @@
       border: 1.5px solid var(--border);
     }
 
-    .saved-name {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
+    .saved-name { display: flex; align-items: center; gap: 10px; }
     .saved-name svg { color: var(--green); }
+    .saved-name .name { font-weight: 700; font-size: 16px; color: var(--text); }
+    .saved-name .sub { font-size: 12px; color: var(--muted); }
 
-    .saved-name .name {
-      font-weight: 700;
-      font-size: 16px;
-      color: var(--text);
-    }
-
-    .saved-name .sub {
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    /* QR section */
     .qr-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -332,12 +333,7 @@
       margin-top: 4px;
     }
 
-    .qr-box {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-    }
+    .qr-box { display: flex; flex-direction: column; align-items: center; gap: 10px; }
 
     .qr-label {
       font-size: 11px;
@@ -359,50 +355,16 @@
       min-height: 140px;
     }
 
-    .qr-frame canvas,
-    .qr-frame img { border-radius: 4px; max-width: 100%; }
+    .qr-frame canvas, .qr-frame img { border-radius: 4px; max-width: 100%; }
 
-    .qr-sublabel {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text);
-    }
+    .qr-sublabel { font-size: 13px; font-weight: 600; color: var(--text); }
+    .qr-sublabel.masked { letter-spacing: 3px; color: var(--muted); }
 
-    .qr-sublabel.masked {
-      letter-spacing: 3px;
-      color: var(--muted);
-    }
-
-    .qr-empty {
-      width: 100px;
-      height: 100px;
-      background: var(--green-bg);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .qr-empty svg { color: var(--border); }
-
-    /* Download row */
     .qr-actions {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
       margin-top: 14px;
-    }
-
-    .hidden { display: none !important; }
-
-    .alert {
-      background: #fff3cd;
-      border: 1.5px solid #ffc107;
-      border-radius: 10px;
-      padding: 10px 14px;
-      font-size: 13px;
-      color: #7d5a00;
-      margin-top: 8px;
     }
 
     .success-badge {
@@ -417,68 +379,64 @@
       font-weight: 700;
       margin-top: 10px;
     }
+
+    footer {
+      margin-top: 32px;
+      padding: 16px 24px 8px;
+      text-align: center;
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      color: var(--muted);
+    }
   </style>
 </head>
 <body>
 
-<!-- Add to Home Screen banner (hidden if already installed or dismissed) -->
-<div id="install-banner" style="width:100%; background:var(--green-dark); color:white; font-family:'Barlow',sans-serif;">
-  <div style="display:flex; align-items:center; gap:12px; padding:10px 16px;">
-    <span style="flex:1; font-size:13px; font-weight:600; line-height:1.4;">📲 Add to your home screen for quick access — works like an app!</span>
-    <button onclick="toggleInstallHelp()" id="how-btn" style="background:white; color:var(--green-dark); border:none; border-radius:8px; padding:7px 14px; font-size:12px; font-weight:700; cursor:pointer; font-family:'Barlow',sans-serif; white-space:nowrap;">How?</button>
-    <button onclick="dismissBanner()" style="background:transparent; color:rgba(255,255,255,0.7); border:none; font-size:20px; cursor:pointer; padding:0 4px; line-height:1;">×</button>
+<!-- Install Banner -->
+<div id="install-banner">
+  <div id="install-banner-row">
+    <span>📲 Add to your home screen — works like an app!</span>
+    <button class="banner-btn" id="how-btn" onclick="toggleHelp()">How?</button>
+    <button class="banner-dismiss" onclick="dismissBanner()">&#x00D7;</button>
   </div>
-  <div id="install-help" style="display:none; background:#fff; color:var(--text); padding:14px 18px; font-size:13px; line-height:1.8; border-top:1px solid var(--border);">
-    <strong style="font-size:14px; color:var(--green-dark);">📱 iPhone / iPad (Safari):</strong><br>
-    Tap the <strong>Share</strong> button (box with ↑ arrow at the bottom) → scroll down and tap <strong>"Add to Home Screen"</strong> → tap <strong>Add</strong>.<br><br>
-    <strong style="font-size:14px; color:var(--green-dark);">🤖 Android (Chrome):</strong><br>
-    Tap the <strong>⋮ three-dot menu</strong> (top right) → tap <strong>"Add to Home screen"</strong> → tap <strong>Add</strong>.<br><br>
-    <button onclick="toggleInstallHelp()" style="background:var(--green); color:white; border:none; border-radius:8px; padding:9px 20px; font-size:13px; font-weight:700; cursor:pointer; font-family:'Barlow',sans-serif;">Got it ✓</button>
+  <div id="install-help-panel" style="display:none;">
+    <strong>📱 iPhone / iPad (Safari only):</strong><br>
+    Tap the <strong>Share</strong> button (box with ↑ arrow) at the bottom of the screen → scroll down and tap <strong>"Add to Home Screen"</strong> → tap <strong>Add</strong>.<br><br>
+    <strong>🤖 Android (Chrome):</strong><br>
+    Tap the <strong>⋮ three-dot menu</strong> (top right) → tap <strong>"Add to Home screen"</strong> → tap <strong>Add</strong>.
+    <button class="help-close-btn" onclick="toggleHelp()">Got it ✓</button>
   </div>
 </div>
 
 <div class="header">
   <div class="logo-icon">
-    <svg viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="0" y="10" width="26" height="14" rx="7" fill="white"/>
-      <rect x="11" y="12" width="5" height="7" rx="1" fill="#365c41"/>
-      <circle cx="26" cy="14" r="6" fill="white"/>
-      <circle cx="26" cy="14" r="3" fill="#365c41"/>
-      <rect x="26" y="19" width="12" height="4" rx="1" fill="white"/>
-      <rect x="32" y="22" width="6" height="3" rx="1" fill="white"/>
-    </svg>
-    <span class="logo-label">ASDA</span>
+    <img src="data:image/png;base64,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" alt="ASDA"/>
   </div>
   <div class="header-text">
     <h1>Login Companion</h1>
-    <p>Store & scan your credentials</p>
+    <p>Store &amp; scan your credentials</p>
   </div>
   <div class="live-dot">Live</div>
 </div>
 
 <div class="container">
 
-  <!-- Step 1: Credentials -->
   <div class="card" id="card-input">
     <div class="card-title">
       <span class="step-num">1</span>
       Your Login Credentials
     </div>
-
     <div id="form-area">
       <label for="username">Username</label>
-      <input type="text" id="username" placeholder="Enter your ASDA username" autocomplete="username" />
-
+      <input type="text" id="username" placeholder="Enter your ASDA username" autocomplete="username"/>
       <label for="password">Password</label>
       <div class="show-toggle">
-        <input type="password" id="password" placeholder="Enter your password" autocomplete="current-password" />
+        <input type="password" id="password" placeholder="Enter your password" autocomplete="current-password"/>
         <button class="toggle-btn" id="togglePwd" onclick="togglePassword()">Show</button>
       </div>
-
       <button class="btn-primary" onclick="saveCredentials()">💾 Save &amp; Generate QR Codes →</button>
     </div>
-
-    <div id="saved-area" class="hidden">
+    <div id="saved-area" style="display:none;">
       <div class="saved-info">
         <div class="saved-name">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
@@ -493,18 +451,15 @@
     </div>
   </div>
 
-  <!-- Step 2: QR Codes -->
   <div class="card" id="card-qr">
     <div class="card-title">
       <span class="step-num">2</span>
       Your Login QR Codes
     </div>
-
     <div id="qr-placeholder">
       <p style="color:var(--muted);font-size:14px;">Save your credentials above to generate QR codes.</p>
     </div>
-
-    <div id="qr-content" class="hidden">
+    <div id="qr-content" style="display:none;">
       <div class="qr-grid">
         <div class="qr-box">
           <span class="qr-label">Username</span>
@@ -517,146 +472,113 @@
           <span class="qr-sublabel masked">••••••••</span>
         </div>
       </div>
-
       <div class="qr-actions">
-        <button class="btn-secondary" onclick="downloadQR('qr-username', 'asda-username-qr')">⬇ Save Username QR</button>
-        <button class="btn-secondary" onclick="downloadQR('qr-password', 'asda-password-qr')">⬇ Save Password QR</button>
+        <button class="btn-secondary" onclick="downloadQR('qr-username','asda-username-qr')">⬇ Save Username QR</button>
+        <button class="btn-secondary" onclick="downloadQR('qr-password','asda-password-qr')">⬇ Save Password QR</button>
       </div>
     </div>
   </div>
 
 </div>
 
-<footer style="
-  margin-top: 32px;
-  padding: 16px 24px 8px;
-  text-align: center;
-  font-family: 'Barlow', sans-serif;
-  font-size: 13px;
-  color: var(--muted);
-  letter-spacing: 0.3px;
-">
-  © 2026 Dave Bruce &mdash; All rights reserved
-</footer>
+<footer>© 2026 Dave Bruce &mdash; All rights reserved</footer>
 
 <script>
-  const STORAGE_KEY = 'asda_login_creds';
+  var STORAGE_KEY = 'asda_login_creds';
 
-  function saveCredentials() {
-    const u = document.getElementById('username').value.trim();
-    const p = document.getElementById('password').value;
-    if (!u || !p) {
-      alert('Please enter both username and password.');
-      return;
+  function el(id) { return document.getElementById(id); }
+  function show(id) { el(id).style.display = 'block'; }
+  function hide(id) { el(id).style.display = 'none'; }
+
+  /* --- Install banner --- */
+  function toggleHelp() {
+    var panel = el('install-help-panel');
+    var btn = el('how-btn');
+    if (panel.style.display === 'none') {
+      panel.style.display = 'block';
+      btn.textContent = 'Close ✕';
+    } else {
+      panel.style.display = 'none';
+      btn.textContent = 'How?';
     }
+  }
+
+  function dismissBanner() {
+    hide('install-banner');
+    localStorage.setItem('install_dismissed', '1');
+  }
+
+  /* --- Credentials --- */
+  function saveCredentials() {
+    var u = el('username').value.trim();
+    var p = el('password').value;
+    if (!u || !p) { alert('Please enter both username and password.'); return; }
     localStorage.setItem(STORAGE_KEY, JSON.stringify({ username: u, password: p }));
     showSavedState(u, p);
   }
 
   function showSavedState(u, p) {
-    document.getElementById('form-area').classList.add('hidden');
-    document.getElementById('saved-area').classList.remove('hidden');
-    document.getElementById('saved-display-name').textContent = u;
+    hide('form-area');
+    show('saved-area');
+    el('saved-display-name').textContent = u;
     generateQRCodes(u, p);
   }
 
   function changeCredentials() {
-    document.getElementById('form-area').classList.remove('hidden');
-    document.getElementById('saved-area').classList.add('hidden');
-    const data = loadCreds();
+    show('form-area');
+    hide('saved-area');
+    var data = loadCreds();
     if (data) {
-      document.getElementById('username').value = data.username;
-      document.getElementById('password').value = data.password;
+      el('username').value = data.username;
+      el('password').value = data.password;
     }
-    document.getElementById('qr-placeholder').classList.remove('hidden');
-    document.getElementById('qr-content').classList.add('hidden');
-    document.getElementById('qr-username').innerHTML = '';
-    document.getElementById('qr-password').innerHTML = '';
+    hide('qr-content');
+    show('qr-placeholder');
+    el('qr-username').innerHTML = '';
+    el('qr-password').innerHTML = '';
   }
 
   function loadCreds() {
-    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)); } catch { return null; }
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)); } catch(e) { return null; }
   }
 
+  /* --- QR --- */
   function generateQRCodes(u, p) {
-    document.getElementById('qr-placeholder').classList.add('hidden');
-    document.getElementById('qr-content').classList.remove('hidden');
-    document.getElementById('qr-username-label').textContent = u;
-
-    document.getElementById('qr-username').innerHTML = '';
-    document.getElementById('qr-password').innerHTML = '';
-
-    new QRCode(document.getElementById('qr-username'), {
-      text: u,
-      width: 150, height: 150,
-      colorDark: '#1a2e1f', colorLight: '#ffffff',
-      correctLevel: QRCode.CorrectLevel.H
-    });
-
-    new QRCode(document.getElementById('qr-password'), {
-      text: p,
-      width: 150, height: 150,
-      colorDark: '#1a2e1f', colorLight: '#ffffff',
-      correctLevel: QRCode.CorrectLevel.H
-    });
+    hide('qr-placeholder');
+    show('qr-content');
+    el('qr-username-label').textContent = u;
+    el('qr-username').innerHTML = '';
+    el('qr-password').innerHTML = '';
+    new QRCode(el('qr-username'), { text: u, width: 150, height: 150, colorDark: '#1a2e1f', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.H });
+    new QRCode(el('qr-password'), { text: p, width: 150, height: 150, colorDark: '#1a2e1f', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.H });
   }
 
   function togglePassword() {
-    const input = document.getElementById('password');
-    const btn = document.getElementById('togglePwd');
-    if (input.type === 'password') {
-      input.type = 'text';
-      btn.textContent = 'Hide';
-    } else {
-      input.type = 'password';
-      btn.textContent = 'Show';
-    }
+    var input = el('password');
+    var btn = el('togglePwd');
+    if (input.type === 'password') { input.type = 'text'; btn.textContent = 'Hide'; }
+    else { input.type = 'password'; btn.textContent = 'Show'; }
   }
 
   function downloadQR(containerId, filename) {
-    const container = document.getElementById(containerId);
-    const canvas = container.querySelector('canvas');
+    var canvas = el(containerId).querySelector('canvas');
     if (!canvas) { alert('QR code not generated yet.'); return; }
-    const link = document.createElement('a');
+    var link = document.createElement('a');
     link.download = filename + '.png';
     link.href = canvas.toDataURL('image/png');
     link.click();
   }
 
-  // On load: check for saved creds + hide banner if running as installed PWA
-  window.addEventListener('DOMContentLoaded', () => {
-    const data = loadCreds();
+  /* --- On load --- */
+  window.onload = function() {
+    if (localStorage.getItem('install_dismissed') || window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches) {
+      hide('install-banner');
+    }
+    var data = loadCreds();
     if (data && data.username && data.password) {
       showSavedState(data.username, data.password);
     }
-
-    // Hide install banner if already running standalone (installed)
-    if (window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches) {
-      document.getElementById('install-banner').style.display = 'none';
-    }
-
-    // Hide if previously dismissed
-    if (localStorage.getItem('install_banner_dismissed')) {
-      document.getElementById('install-banner').style.display = 'none';
-    }
-  });
-
-  function dismissBanner() {
-    document.getElementById('install-banner').style.display = 'none';
-    localStorage.setItem('install_banner_dismissed', '1');
-  }
-
-  function toggleInstallHelp() {
-    const help = document.getElementById('install-help');
-    const btn = document.getElementById('how-btn');
-    if (help.style.display === 'none' || help.style.display === '') {
-      help.style.display = 'block';
-      btn.textContent = 'Close ✕';
-    } else {
-      help.style.display = 'none';
-      btn.textContent = 'How?';
-    }
-  }
+  };
 </script>
 </body>
 </html>
